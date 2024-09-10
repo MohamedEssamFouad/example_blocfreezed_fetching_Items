@@ -18,23 +18,29 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ItemEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchItems,
+    required TResult Function(int page) fetchItems,
     required TResult Function() refreshItems,
     required TResult Function() retryFetching,
+    required TResult Function() clearItems,
+    required TResult Function() loadNextPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchItems,
+    TResult? Function(int page)? fetchItems,
     TResult? Function()? refreshItems,
     TResult? Function()? retryFetching,
+    TResult? Function()? clearItems,
+    TResult? Function()? loadNextPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchItems,
+    TResult Function(int page)? fetchItems,
     TResult Function()? refreshItems,
     TResult Function()? retryFetching,
+    TResult Function()? clearItems,
+    TResult Function()? loadNextPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +49,8 @@ mixin _$ItemEvent {
     required TResult Function(FetchItems value) fetchItems,
     required TResult Function(RefreshItems value) refreshItems,
     required TResult Function(RetryFetching value) retryFetching,
+    required TResult Function(ClearItems value) clearItems,
+    required TResult Function(LoadNextPage value) loadNextPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +58,8 @@ mixin _$ItemEvent {
     TResult? Function(FetchItems value)? fetchItems,
     TResult? Function(RefreshItems value)? refreshItems,
     TResult? Function(RetryFetching value)? retryFetching,
+    TResult? Function(ClearItems value)? clearItems,
+    TResult? Function(LoadNextPage value)? loadNextPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +67,8 @@ mixin _$ItemEvent {
     TResult Function(FetchItems value)? fetchItems,
     TResult Function(RefreshItems value)? refreshItems,
     TResult Function(RetryFetching value)? retryFetching,
+    TResult Function(ClearItems value)? clearItems,
+    TResult Function(LoadNextPage value)? loadNextPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -87,6 +99,8 @@ abstract class _$$FetchItemsImplCopyWith<$Res> {
   factory _$$FetchItemsImplCopyWith(
           _$FetchItemsImpl value, $Res Function(_$FetchItemsImpl) then) =
       __$$FetchItemsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int page});
 }
 
 /// @nodoc
@@ -99,57 +113,89 @@ class __$$FetchItemsImplCopyWithImpl<$Res>
 
   /// Create a copy of ItemEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? page = null,
+  }) {
+    return _then(_$FetchItemsImpl(
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$FetchItemsImpl implements FetchItems {
-  const _$FetchItemsImpl();
+  const _$FetchItemsImpl({this.page = 1});
+
+  @override
+  @JsonKey()
+  final int page;
 
   @override
   String toString() {
-    return 'ItemEvent.fetchItems()';
+    return 'ItemEvent.fetchItems(page: $page)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FetchItemsImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$FetchItemsImpl &&
+            (identical(other.page, page) || other.page == page));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, page);
+
+  /// Create a copy of ItemEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchItemsImplCopyWith<_$FetchItemsImpl> get copyWith =>
+      __$$FetchItemsImplCopyWithImpl<_$FetchItemsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchItems,
+    required TResult Function(int page) fetchItems,
     required TResult Function() refreshItems,
     required TResult Function() retryFetching,
+    required TResult Function() clearItems,
+    required TResult Function() loadNextPage,
   }) {
-    return fetchItems();
+    return fetchItems(page);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchItems,
+    TResult? Function(int page)? fetchItems,
     TResult? Function()? refreshItems,
     TResult? Function()? retryFetching,
+    TResult? Function()? clearItems,
+    TResult? Function()? loadNextPage,
   }) {
-    return fetchItems?.call();
+    return fetchItems?.call(page);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchItems,
+    TResult Function(int page)? fetchItems,
     TResult Function()? refreshItems,
     TResult Function()? retryFetching,
+    TResult Function()? clearItems,
+    TResult Function()? loadNextPage,
     required TResult orElse(),
   }) {
     if (fetchItems != null) {
-      return fetchItems();
+      return fetchItems(page);
     }
     return orElse();
   }
@@ -160,6 +206,8 @@ class _$FetchItemsImpl implements FetchItems {
     required TResult Function(FetchItems value) fetchItems,
     required TResult Function(RefreshItems value) refreshItems,
     required TResult Function(RetryFetching value) retryFetching,
+    required TResult Function(ClearItems value) clearItems,
+    required TResult Function(LoadNextPage value) loadNextPage,
   }) {
     return fetchItems(this);
   }
@@ -170,6 +218,8 @@ class _$FetchItemsImpl implements FetchItems {
     TResult? Function(FetchItems value)? fetchItems,
     TResult? Function(RefreshItems value)? refreshItems,
     TResult? Function(RetryFetching value)? retryFetching,
+    TResult? Function(ClearItems value)? clearItems,
+    TResult? Function(LoadNextPage value)? loadNextPage,
   }) {
     return fetchItems?.call(this);
   }
@@ -180,6 +230,8 @@ class _$FetchItemsImpl implements FetchItems {
     TResult Function(FetchItems value)? fetchItems,
     TResult Function(RefreshItems value)? refreshItems,
     TResult Function(RetryFetching value)? retryFetching,
+    TResult Function(ClearItems value)? clearItems,
+    TResult Function(LoadNextPage value)? loadNextPage,
     required TResult orElse(),
   }) {
     if (fetchItems != null) {
@@ -190,7 +242,15 @@ class _$FetchItemsImpl implements FetchItems {
 }
 
 abstract class FetchItems implements ItemEvent {
-  const factory FetchItems() = _$FetchItemsImpl;
+  const factory FetchItems({final int page}) = _$FetchItemsImpl;
+
+  int get page;
+
+  /// Create a copy of ItemEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$FetchItemsImplCopyWith<_$FetchItemsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -234,9 +294,11 @@ class _$RefreshItemsImpl implements RefreshItems {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchItems,
+    required TResult Function(int page) fetchItems,
     required TResult Function() refreshItems,
     required TResult Function() retryFetching,
+    required TResult Function() clearItems,
+    required TResult Function() loadNextPage,
   }) {
     return refreshItems();
   }
@@ -244,9 +306,11 @@ class _$RefreshItemsImpl implements RefreshItems {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchItems,
+    TResult? Function(int page)? fetchItems,
     TResult? Function()? refreshItems,
     TResult? Function()? retryFetching,
+    TResult? Function()? clearItems,
+    TResult? Function()? loadNextPage,
   }) {
     return refreshItems?.call();
   }
@@ -254,9 +318,11 @@ class _$RefreshItemsImpl implements RefreshItems {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchItems,
+    TResult Function(int page)? fetchItems,
     TResult Function()? refreshItems,
     TResult Function()? retryFetching,
+    TResult Function()? clearItems,
+    TResult Function()? loadNextPage,
     required TResult orElse(),
   }) {
     if (refreshItems != null) {
@@ -271,6 +337,8 @@ class _$RefreshItemsImpl implements RefreshItems {
     required TResult Function(FetchItems value) fetchItems,
     required TResult Function(RefreshItems value) refreshItems,
     required TResult Function(RetryFetching value) retryFetching,
+    required TResult Function(ClearItems value) clearItems,
+    required TResult Function(LoadNextPage value) loadNextPage,
   }) {
     return refreshItems(this);
   }
@@ -281,6 +349,8 @@ class _$RefreshItemsImpl implements RefreshItems {
     TResult? Function(FetchItems value)? fetchItems,
     TResult? Function(RefreshItems value)? refreshItems,
     TResult? Function(RetryFetching value)? retryFetching,
+    TResult? Function(ClearItems value)? clearItems,
+    TResult? Function(LoadNextPage value)? loadNextPage,
   }) {
     return refreshItems?.call(this);
   }
@@ -291,6 +361,8 @@ class _$RefreshItemsImpl implements RefreshItems {
     TResult Function(FetchItems value)? fetchItems,
     TResult Function(RefreshItems value)? refreshItems,
     TResult Function(RetryFetching value)? retryFetching,
+    TResult Function(ClearItems value)? clearItems,
+    TResult Function(LoadNextPage value)? loadNextPage,
     required TResult orElse(),
   }) {
     if (refreshItems != null) {
@@ -345,9 +417,11 @@ class _$RetryFetchingImpl implements RetryFetching {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchItems,
+    required TResult Function(int page) fetchItems,
     required TResult Function() refreshItems,
     required TResult Function() retryFetching,
+    required TResult Function() clearItems,
+    required TResult Function() loadNextPage,
   }) {
     return retryFetching();
   }
@@ -355,9 +429,11 @@ class _$RetryFetchingImpl implements RetryFetching {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchItems,
+    TResult? Function(int page)? fetchItems,
     TResult? Function()? refreshItems,
     TResult? Function()? retryFetching,
+    TResult? Function()? clearItems,
+    TResult? Function()? loadNextPage,
   }) {
     return retryFetching?.call();
   }
@@ -365,9 +441,11 @@ class _$RetryFetchingImpl implements RetryFetching {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchItems,
+    TResult Function(int page)? fetchItems,
     TResult Function()? refreshItems,
     TResult Function()? retryFetching,
+    TResult Function()? clearItems,
+    TResult Function()? loadNextPage,
     required TResult orElse(),
   }) {
     if (retryFetching != null) {
@@ -382,6 +460,8 @@ class _$RetryFetchingImpl implements RetryFetching {
     required TResult Function(FetchItems value) fetchItems,
     required TResult Function(RefreshItems value) refreshItems,
     required TResult Function(RetryFetching value) retryFetching,
+    required TResult Function(ClearItems value) clearItems,
+    required TResult Function(LoadNextPage value) loadNextPage,
   }) {
     return retryFetching(this);
   }
@@ -392,6 +472,8 @@ class _$RetryFetchingImpl implements RetryFetching {
     TResult? Function(FetchItems value)? fetchItems,
     TResult? Function(RefreshItems value)? refreshItems,
     TResult? Function(RetryFetching value)? retryFetching,
+    TResult? Function(ClearItems value)? clearItems,
+    TResult? Function(LoadNextPage value)? loadNextPage,
   }) {
     return retryFetching?.call(this);
   }
@@ -402,6 +484,8 @@ class _$RetryFetchingImpl implements RetryFetching {
     TResult Function(FetchItems value)? fetchItems,
     TResult Function(RefreshItems value)? refreshItems,
     TResult Function(RetryFetching value)? retryFetching,
+    TResult Function(ClearItems value)? clearItems,
+    TResult Function(LoadNextPage value)? loadNextPage,
     required TResult orElse(),
   }) {
     if (retryFetching != null) {
@@ -416,32 +500,284 @@ abstract class RetryFetching implements ItemEvent {
 }
 
 /// @nodoc
+abstract class _$$ClearItemsImplCopyWith<$Res> {
+  factory _$$ClearItemsImplCopyWith(
+          _$ClearItemsImpl value, $Res Function(_$ClearItemsImpl) then) =
+      __$$ClearItemsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearItemsImplCopyWithImpl<$Res>
+    extends _$ItemEventCopyWithImpl<$Res, _$ClearItemsImpl>
+    implements _$$ClearItemsImplCopyWith<$Res> {
+  __$$ClearItemsImplCopyWithImpl(
+      _$ClearItemsImpl _value, $Res Function(_$ClearItemsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ItemEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClearItemsImpl implements ClearItems {
+  const _$ClearItemsImpl();
+
+  @override
+  String toString() {
+    return 'ItemEvent.clearItems()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearItemsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page) fetchItems,
+    required TResult Function() refreshItems,
+    required TResult Function() retryFetching,
+    required TResult Function() clearItems,
+    required TResult Function() loadNextPage,
+  }) {
+    return clearItems();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int page)? fetchItems,
+    TResult? Function()? refreshItems,
+    TResult? Function()? retryFetching,
+    TResult? Function()? clearItems,
+    TResult? Function()? loadNextPage,
+  }) {
+    return clearItems?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page)? fetchItems,
+    TResult Function()? refreshItems,
+    TResult Function()? retryFetching,
+    TResult Function()? clearItems,
+    TResult Function()? loadNextPage,
+    required TResult orElse(),
+  }) {
+    if (clearItems != null) {
+      return clearItems();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchItems value) fetchItems,
+    required TResult Function(RefreshItems value) refreshItems,
+    required TResult Function(RetryFetching value) retryFetching,
+    required TResult Function(ClearItems value) clearItems,
+    required TResult Function(LoadNextPage value) loadNextPage,
+  }) {
+    return clearItems(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FetchItems value)? fetchItems,
+    TResult? Function(RefreshItems value)? refreshItems,
+    TResult? Function(RetryFetching value)? retryFetching,
+    TResult? Function(ClearItems value)? clearItems,
+    TResult? Function(LoadNextPage value)? loadNextPage,
+  }) {
+    return clearItems?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchItems value)? fetchItems,
+    TResult Function(RefreshItems value)? refreshItems,
+    TResult Function(RetryFetching value)? retryFetching,
+    TResult Function(ClearItems value)? clearItems,
+    TResult Function(LoadNextPage value)? loadNextPage,
+    required TResult orElse(),
+  }) {
+    if (clearItems != null) {
+      return clearItems(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ClearItems implements ItemEvent {
+  const factory ClearItems() = _$ClearItemsImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadNextPageImplCopyWith<$Res> {
+  factory _$$LoadNextPageImplCopyWith(
+          _$LoadNextPageImpl value, $Res Function(_$LoadNextPageImpl) then) =
+      __$$LoadNextPageImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadNextPageImplCopyWithImpl<$Res>
+    extends _$ItemEventCopyWithImpl<$Res, _$LoadNextPageImpl>
+    implements _$$LoadNextPageImplCopyWith<$Res> {
+  __$$LoadNextPageImplCopyWithImpl(
+      _$LoadNextPageImpl _value, $Res Function(_$LoadNextPageImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ItemEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadNextPageImpl implements LoadNextPage {
+  const _$LoadNextPageImpl();
+
+  @override
+  String toString() {
+    return 'ItemEvent.loadNextPage()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadNextPageImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page) fetchItems,
+    required TResult Function() refreshItems,
+    required TResult Function() retryFetching,
+    required TResult Function() clearItems,
+    required TResult Function() loadNextPage,
+  }) {
+    return loadNextPage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int page)? fetchItems,
+    TResult? Function()? refreshItems,
+    TResult? Function()? retryFetching,
+    TResult? Function()? clearItems,
+    TResult? Function()? loadNextPage,
+  }) {
+    return loadNextPage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page)? fetchItems,
+    TResult Function()? refreshItems,
+    TResult Function()? retryFetching,
+    TResult Function()? clearItems,
+    TResult Function()? loadNextPage,
+    required TResult orElse(),
+  }) {
+    if (loadNextPage != null) {
+      return loadNextPage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchItems value) fetchItems,
+    required TResult Function(RefreshItems value) refreshItems,
+    required TResult Function(RetryFetching value) retryFetching,
+    required TResult Function(ClearItems value) clearItems,
+    required TResult Function(LoadNextPage value) loadNextPage,
+  }) {
+    return loadNextPage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FetchItems value)? fetchItems,
+    TResult? Function(RefreshItems value)? refreshItems,
+    TResult? Function(RetryFetching value)? retryFetching,
+    TResult? Function(ClearItems value)? clearItems,
+    TResult? Function(LoadNextPage value)? loadNextPage,
+  }) {
+    return loadNextPage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchItems value)? fetchItems,
+    TResult Function(RefreshItems value)? refreshItems,
+    TResult Function(RetryFetching value)? retryFetching,
+    TResult Function(ClearItems value)? clearItems,
+    TResult Function(LoadNextPage value)? loadNextPage,
+    required TResult orElse(),
+  }) {
+    if (loadNextPage != null) {
+      return loadNextPage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadNextPage implements ItemEvent {
+  const factory LoadNextPage() = _$LoadNextPageImpl;
+}
+
+/// @nodoc
 mixin _$ItemState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<String> items) loaded,
+    required TResult Function(List<String> items, int currentPage) loaded,
     required TResult Function(String message) error,
     required TResult Function() success,
+    required TResult Function() cleared,
+    required TResult Function(List<String> items, int currentPage) loadingMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<String> items)? loaded,
+    TResult? Function(List<String> items, int currentPage)? loaded,
     TResult? Function(String message)? error,
     TResult? Function()? success,
+    TResult? Function()? cleared,
+    TResult? Function(List<String> items, int currentPage)? loadingMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<String> items)? loaded,
+    TResult Function(List<String> items, int currentPage)? loaded,
     TResult Function(String message)? error,
     TResult Function()? success,
+    TResult Function()? cleared,
+    TResult Function(List<String> items, int currentPage)? loadingMore,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -452,6 +788,8 @@ mixin _$ItemState {
     required TResult Function(Loaded value) loaded,
     required TResult Function(Error value) error,
     required TResult Function(Success value) success,
+    required TResult Function(Cleared value) cleared,
+    required TResult Function(LoadingMore value) loadingMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -461,6 +799,8 @@ mixin _$ItemState {
     TResult? Function(Loaded value)? loaded,
     TResult? Function(Error value)? error,
     TResult? Function(Success value)? success,
+    TResult? Function(Cleared value)? cleared,
+    TResult? Function(LoadingMore value)? loadingMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -470,6 +810,8 @@ mixin _$ItemState {
     TResult Function(Loaded value)? loaded,
     TResult Function(Error value)? error,
     TResult Function(Success value)? success,
+    TResult Function(Cleared value)? cleared,
+    TResult Function(LoadingMore value)? loadingMore,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -538,9 +880,11 @@ class _$InitialImpl implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<String> items) loaded,
+    required TResult Function(List<String> items, int currentPage) loaded,
     required TResult Function(String message) error,
     required TResult Function() success,
+    required TResult Function() cleared,
+    required TResult Function(List<String> items, int currentPage) loadingMore,
   }) {
     return initial();
   }
@@ -550,9 +894,11 @@ class _$InitialImpl implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<String> items)? loaded,
+    TResult? Function(List<String> items, int currentPage)? loaded,
     TResult? Function(String message)? error,
     TResult? Function()? success,
+    TResult? Function()? cleared,
+    TResult? Function(List<String> items, int currentPage)? loadingMore,
   }) {
     return initial?.call();
   }
@@ -562,9 +908,11 @@ class _$InitialImpl implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<String> items)? loaded,
+    TResult Function(List<String> items, int currentPage)? loaded,
     TResult Function(String message)? error,
     TResult Function()? success,
+    TResult Function()? cleared,
+    TResult Function(List<String> items, int currentPage)? loadingMore,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -581,6 +929,8 @@ class _$InitialImpl implements Initial {
     required TResult Function(Loaded value) loaded,
     required TResult Function(Error value) error,
     required TResult Function(Success value) success,
+    required TResult Function(Cleared value) cleared,
+    required TResult Function(LoadingMore value) loadingMore,
   }) {
     return initial(this);
   }
@@ -593,6 +943,8 @@ class _$InitialImpl implements Initial {
     TResult? Function(Loaded value)? loaded,
     TResult? Function(Error value)? error,
     TResult? Function(Success value)? success,
+    TResult? Function(Cleared value)? cleared,
+    TResult? Function(LoadingMore value)? loadingMore,
   }) {
     return initial?.call(this);
   }
@@ -605,6 +957,8 @@ class _$InitialImpl implements Initial {
     TResult Function(Loaded value)? loaded,
     TResult Function(Error value)? error,
     TResult Function(Success value)? success,
+    TResult Function(Cleared value)? cleared,
+    TResult Function(LoadingMore value)? loadingMore,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -661,9 +1015,11 @@ class _$LoadingImpl implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<String> items) loaded,
+    required TResult Function(List<String> items, int currentPage) loaded,
     required TResult Function(String message) error,
     required TResult Function() success,
+    required TResult Function() cleared,
+    required TResult Function(List<String> items, int currentPage) loadingMore,
   }) {
     return loading();
   }
@@ -673,9 +1029,11 @@ class _$LoadingImpl implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<String> items)? loaded,
+    TResult? Function(List<String> items, int currentPage)? loaded,
     TResult? Function(String message)? error,
     TResult? Function()? success,
+    TResult? Function()? cleared,
+    TResult? Function(List<String> items, int currentPage)? loadingMore,
   }) {
     return loading?.call();
   }
@@ -685,9 +1043,11 @@ class _$LoadingImpl implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<String> items)? loaded,
+    TResult Function(List<String> items, int currentPage)? loaded,
     TResult Function(String message)? error,
     TResult Function()? success,
+    TResult Function()? cleared,
+    TResult Function(List<String> items, int currentPage)? loadingMore,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -704,6 +1064,8 @@ class _$LoadingImpl implements Loading {
     required TResult Function(Loaded value) loaded,
     required TResult Function(Error value) error,
     required TResult Function(Success value) success,
+    required TResult Function(Cleared value) cleared,
+    required TResult Function(LoadingMore value) loadingMore,
   }) {
     return loading(this);
   }
@@ -716,6 +1078,8 @@ class _$LoadingImpl implements Loading {
     TResult? Function(Loaded value)? loaded,
     TResult? Function(Error value)? error,
     TResult? Function(Success value)? success,
+    TResult? Function(Cleared value)? cleared,
+    TResult? Function(LoadingMore value)? loadingMore,
   }) {
     return loading?.call(this);
   }
@@ -728,6 +1092,8 @@ class _$LoadingImpl implements Loading {
     TResult Function(Loaded value)? loaded,
     TResult Function(Error value)? error,
     TResult Function(Success value)? success,
+    TResult Function(Cleared value)? cleared,
+    TResult Function(LoadingMore value)? loadingMore,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -747,7 +1113,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<String> items});
+  $Res call({List<String> items, int currentPage});
 }
 
 /// @nodoc
@@ -764,12 +1130,17 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? items = null,
+    Object? currentPage = null,
   }) {
     return _then(_$LoadedImpl(
       null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -777,7 +1148,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements Loaded {
-  const _$LoadedImpl(final List<String> items) : _items = items;
+  const _$LoadedImpl(final List<String> items, {required this.currentPage})
+      : _items = items;
 
   final List<String> _items;
   @override
@@ -788,8 +1160,11 @@ class _$LoadedImpl implements Loaded {
   }
 
   @override
+  final int currentPage;
+
+  @override
   String toString() {
-    return 'ItemState.loaded(items: $items)';
+    return 'ItemState.loaded(items: $items, currentPage: $currentPage)';
   }
 
   @override
@@ -797,12 +1172,14 @@ class _$LoadedImpl implements Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other._items, _items));
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_items));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_items), currentPage);
 
   /// Create a copy of ItemState
   /// with the given fields replaced by the non-null parameter values.
@@ -817,11 +1194,13 @@ class _$LoadedImpl implements Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<String> items) loaded,
+    required TResult Function(List<String> items, int currentPage) loaded,
     required TResult Function(String message) error,
     required TResult Function() success,
+    required TResult Function() cleared,
+    required TResult Function(List<String> items, int currentPage) loadingMore,
   }) {
-    return loaded(items);
+    return loaded(items, currentPage);
   }
 
   @override
@@ -829,11 +1208,13 @@ class _$LoadedImpl implements Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<String> items)? loaded,
+    TResult? Function(List<String> items, int currentPage)? loaded,
     TResult? Function(String message)? error,
     TResult? Function()? success,
+    TResult? Function()? cleared,
+    TResult? Function(List<String> items, int currentPage)? loadingMore,
   }) {
-    return loaded?.call(items);
+    return loaded?.call(items, currentPage);
   }
 
   @override
@@ -841,13 +1222,15 @@ class _$LoadedImpl implements Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<String> items)? loaded,
+    TResult Function(List<String> items, int currentPage)? loaded,
     TResult Function(String message)? error,
     TResult Function()? success,
+    TResult Function()? cleared,
+    TResult Function(List<String> items, int currentPage)? loadingMore,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(items);
+      return loaded(items, currentPage);
     }
     return orElse();
   }
@@ -860,6 +1243,8 @@ class _$LoadedImpl implements Loaded {
     required TResult Function(Loaded value) loaded,
     required TResult Function(Error value) error,
     required TResult Function(Success value) success,
+    required TResult Function(Cleared value) cleared,
+    required TResult Function(LoadingMore value) loadingMore,
   }) {
     return loaded(this);
   }
@@ -872,6 +1257,8 @@ class _$LoadedImpl implements Loaded {
     TResult? Function(Loaded value)? loaded,
     TResult? Function(Error value)? error,
     TResult? Function(Success value)? success,
+    TResult? Function(Cleared value)? cleared,
+    TResult? Function(LoadingMore value)? loadingMore,
   }) {
     return loaded?.call(this);
   }
@@ -884,6 +1271,8 @@ class _$LoadedImpl implements Loaded {
     TResult Function(Loaded value)? loaded,
     TResult Function(Error value)? error,
     TResult Function(Success value)? success,
+    TResult Function(Cleared value)? cleared,
+    TResult Function(LoadingMore value)? loadingMore,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -894,9 +1283,11 @@ class _$LoadedImpl implements Loaded {
 }
 
 abstract class Loaded implements ItemState {
-  const factory Loaded(final List<String> items) = _$LoadedImpl;
+  const factory Loaded(final List<String> items,
+      {required final int currentPage}) = _$LoadedImpl;
 
   List<String> get items;
+  int get currentPage;
 
   /// Create a copy of ItemState
   /// with the given fields replaced by the non-null parameter values.
@@ -975,9 +1366,11 @@ class _$ErrorImpl implements Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<String> items) loaded,
+    required TResult Function(List<String> items, int currentPage) loaded,
     required TResult Function(String message) error,
     required TResult Function() success,
+    required TResult Function() cleared,
+    required TResult Function(List<String> items, int currentPage) loadingMore,
   }) {
     return error(message);
   }
@@ -987,9 +1380,11 @@ class _$ErrorImpl implements Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<String> items)? loaded,
+    TResult? Function(List<String> items, int currentPage)? loaded,
     TResult? Function(String message)? error,
     TResult? Function()? success,
+    TResult? Function()? cleared,
+    TResult? Function(List<String> items, int currentPage)? loadingMore,
   }) {
     return error?.call(message);
   }
@@ -999,9 +1394,11 @@ class _$ErrorImpl implements Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<String> items)? loaded,
+    TResult Function(List<String> items, int currentPage)? loaded,
     TResult Function(String message)? error,
     TResult Function()? success,
+    TResult Function()? cleared,
+    TResult Function(List<String> items, int currentPage)? loadingMore,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1018,6 +1415,8 @@ class _$ErrorImpl implements Error {
     required TResult Function(Loaded value) loaded,
     required TResult Function(Error value) error,
     required TResult Function(Success value) success,
+    required TResult Function(Cleared value) cleared,
+    required TResult Function(LoadingMore value) loadingMore,
   }) {
     return error(this);
   }
@@ -1030,6 +1429,8 @@ class _$ErrorImpl implements Error {
     TResult? Function(Loaded value)? loaded,
     TResult? Function(Error value)? error,
     TResult? Function(Success value)? success,
+    TResult? Function(Cleared value)? cleared,
+    TResult? Function(LoadingMore value)? loadingMore,
   }) {
     return error?.call(this);
   }
@@ -1042,6 +1443,8 @@ class _$ErrorImpl implements Error {
     TResult Function(Loaded value)? loaded,
     TResult Function(Error value)? error,
     TResult Function(Success value)? success,
+    TResult Function(Cleared value)? cleared,
+    TResult Function(LoadingMore value)? loadingMore,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1106,9 +1509,11 @@ class _$SuccessImpl implements Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<String> items) loaded,
+    required TResult Function(List<String> items, int currentPage) loaded,
     required TResult Function(String message) error,
     required TResult Function() success,
+    required TResult Function() cleared,
+    required TResult Function(List<String> items, int currentPage) loadingMore,
   }) {
     return success();
   }
@@ -1118,9 +1523,11 @@ class _$SuccessImpl implements Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<String> items)? loaded,
+    TResult? Function(List<String> items, int currentPage)? loaded,
     TResult? Function(String message)? error,
     TResult? Function()? success,
+    TResult? Function()? cleared,
+    TResult? Function(List<String> items, int currentPage)? loadingMore,
   }) {
     return success?.call();
   }
@@ -1130,9 +1537,11 @@ class _$SuccessImpl implements Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<String> items)? loaded,
+    TResult Function(List<String> items, int currentPage)? loaded,
     TResult Function(String message)? error,
     TResult Function()? success,
+    TResult Function()? cleared,
+    TResult Function(List<String> items, int currentPage)? loadingMore,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1149,6 +1558,8 @@ class _$SuccessImpl implements Success {
     required TResult Function(Loaded value) loaded,
     required TResult Function(Error value) error,
     required TResult Function(Success value) success,
+    required TResult Function(Cleared value) cleared,
+    required TResult Function(LoadingMore value) loadingMore,
   }) {
     return success(this);
   }
@@ -1161,6 +1572,8 @@ class _$SuccessImpl implements Success {
     TResult? Function(Loaded value)? loaded,
     TResult? Function(Error value)? error,
     TResult? Function(Success value)? success,
+    TResult? Function(Cleared value)? cleared,
+    TResult? Function(LoadingMore value)? loadingMore,
   }) {
     return success?.call(this);
   }
@@ -1173,6 +1586,8 @@ class _$SuccessImpl implements Success {
     TResult Function(Loaded value)? loaded,
     TResult Function(Error value)? error,
     TResult Function(Success value)? success,
+    TResult Function(Cleared value)? cleared,
+    TResult Function(LoadingMore value)? loadingMore,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1184,4 +1599,328 @@ class _$SuccessImpl implements Success {
 
 abstract class Success implements ItemState {
   const factory Success() = _$SuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$ClearedImplCopyWith<$Res> {
+  factory _$$ClearedImplCopyWith(
+          _$ClearedImpl value, $Res Function(_$ClearedImpl) then) =
+      __$$ClearedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearedImplCopyWithImpl<$Res>
+    extends _$ItemStateCopyWithImpl<$Res, _$ClearedImpl>
+    implements _$$ClearedImplCopyWith<$Res> {
+  __$$ClearedImplCopyWithImpl(
+      _$ClearedImpl _value, $Res Function(_$ClearedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ItemState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClearedImpl implements Cleared {
+  const _$ClearedImpl();
+
+  @override
+  String toString() {
+    return 'ItemState.cleared()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<String> items, int currentPage) loaded,
+    required TResult Function(String message) error,
+    required TResult Function() success,
+    required TResult Function() cleared,
+    required TResult Function(List<String> items, int currentPage) loadingMore,
+  }) {
+    return cleared();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<String> items, int currentPage)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function()? success,
+    TResult? Function()? cleared,
+    TResult? Function(List<String> items, int currentPage)? loadingMore,
+  }) {
+    return cleared?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<String> items, int currentPage)? loaded,
+    TResult Function(String message)? error,
+    TResult Function()? success,
+    TResult Function()? cleared,
+    TResult Function(List<String> items, int currentPage)? loadingMore,
+    required TResult orElse(),
+  }) {
+    if (cleared != null) {
+      return cleared();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Loaded value) loaded,
+    required TResult Function(Error value) error,
+    required TResult Function(Success value) success,
+    required TResult Function(Cleared value) cleared,
+    required TResult Function(LoadingMore value) loadingMore,
+  }) {
+    return cleared(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Loaded value)? loaded,
+    TResult? Function(Error value)? error,
+    TResult? Function(Success value)? success,
+    TResult? Function(Cleared value)? cleared,
+    TResult? Function(LoadingMore value)? loadingMore,
+  }) {
+    return cleared?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Loaded value)? loaded,
+    TResult Function(Error value)? error,
+    TResult Function(Success value)? success,
+    TResult Function(Cleared value)? cleared,
+    TResult Function(LoadingMore value)? loadingMore,
+    required TResult orElse(),
+  }) {
+    if (cleared != null) {
+      return cleared(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Cleared implements ItemState {
+  const factory Cleared() = _$ClearedImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadingMoreImplCopyWith<$Res> {
+  factory _$$LoadingMoreImplCopyWith(
+          _$LoadingMoreImpl value, $Res Function(_$LoadingMoreImpl) then) =
+      __$$LoadingMoreImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<String> items, int currentPage});
+}
+
+/// @nodoc
+class __$$LoadingMoreImplCopyWithImpl<$Res>
+    extends _$ItemStateCopyWithImpl<$Res, _$LoadingMoreImpl>
+    implements _$$LoadingMoreImplCopyWith<$Res> {
+  __$$LoadingMoreImplCopyWithImpl(
+      _$LoadingMoreImpl _value, $Res Function(_$LoadingMoreImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ItemState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? items = null,
+    Object? currentPage = null,
+  }) {
+    return _then(_$LoadingMoreImpl(
+      null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadingMoreImpl implements LoadingMore {
+  const _$LoadingMoreImpl(final List<String> items, {required this.currentPage})
+      : _items = items;
+
+  final List<String> _items;
+  @override
+  List<String> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
+
+  @override
+  final int currentPage;
+
+  @override
+  String toString() {
+    return 'ItemState.loadingMore(items: $items, currentPage: $currentPage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingMoreImpl &&
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_items), currentPage);
+
+  /// Create a copy of ItemState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadingMoreImplCopyWith<_$LoadingMoreImpl> get copyWith =>
+      __$$LoadingMoreImplCopyWithImpl<_$LoadingMoreImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<String> items, int currentPage) loaded,
+    required TResult Function(String message) error,
+    required TResult Function() success,
+    required TResult Function() cleared,
+    required TResult Function(List<String> items, int currentPage) loadingMore,
+  }) {
+    return loadingMore(items, currentPage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<String> items, int currentPage)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function()? success,
+    TResult? Function()? cleared,
+    TResult? Function(List<String> items, int currentPage)? loadingMore,
+  }) {
+    return loadingMore?.call(items, currentPage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<String> items, int currentPage)? loaded,
+    TResult Function(String message)? error,
+    TResult Function()? success,
+    TResult Function()? cleared,
+    TResult Function(List<String> items, int currentPage)? loadingMore,
+    required TResult orElse(),
+  }) {
+    if (loadingMore != null) {
+      return loadingMore(items, currentPage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Loaded value) loaded,
+    required TResult Function(Error value) error,
+    required TResult Function(Success value) success,
+    required TResult Function(Cleared value) cleared,
+    required TResult Function(LoadingMore value) loadingMore,
+  }) {
+    return loadingMore(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Loaded value)? loaded,
+    TResult? Function(Error value)? error,
+    TResult? Function(Success value)? success,
+    TResult? Function(Cleared value)? cleared,
+    TResult? Function(LoadingMore value)? loadingMore,
+  }) {
+    return loadingMore?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Loaded value)? loaded,
+    TResult Function(Error value)? error,
+    TResult Function(Success value)? success,
+    TResult Function(Cleared value)? cleared,
+    TResult Function(LoadingMore value)? loadingMore,
+    required TResult orElse(),
+  }) {
+    if (loadingMore != null) {
+      return loadingMore(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadingMore implements ItemState {
+  const factory LoadingMore(final List<String> items,
+      {required final int currentPage}) = _$LoadingMoreImpl;
+
+  List<String> get items;
+  int get currentPage;
+
+  /// Create a copy of ItemState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadingMoreImplCopyWith<_$LoadingMoreImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
